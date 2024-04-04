@@ -8,6 +8,7 @@ import android.os.Looper
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
+import android.widget.TextView
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,11 +21,14 @@ class SplashActivity : AppCompatActivity() {
             // Code to be executed after the delay
            Intent(this,MainActivity::class.java).also {
                startActivity(it)
-               finish()
+               finish() // remove from the activity stack
            }
         }, 3000) // Delay in milliseconds
-        val rotate = AnimationUtils.loadAnimation(this,R.anim.rotate)
+        val topAnim = AnimationUtils.loadAnimation(this,R.anim.top_anim)
+        val bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_anim)
         val logo: ImageView = findViewById(R.id.logo)
-        logo.startAnimation(rotate)
+        val welcome: TextView = findViewById(R.id.welcome)
+        logo.startAnimation(bottomAnim)
+        welcome.startAnimation(topAnim)
     }
 }
