@@ -30,6 +30,7 @@
         android:textAlignment="center"
         android:textColor="#F5330239"
         android:textSize="48sp"
+        android:letterSpacing="0.2"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

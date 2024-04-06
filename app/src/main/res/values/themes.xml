@@ -3,7 +3,8 @@
     <style name="Base.Theme.BankApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="colorPrimary">@color/black</item>
+        <item name="colorPrimaryFixed">#800080</item> <!--for a specific purpose-->
     </style>
-
     <style name="Theme.BankApp" parent="Base.Theme.BankApp" />
 </resources>
