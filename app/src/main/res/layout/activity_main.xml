@@ -75,7 +75,9 @@
             android:text="Forgot Password?"
             android:textAlignment="textEnd"
             android:textColor="#DCAB1B"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:background="?attr/colorPrimaryFixed"/>
+
     </LinearLayout>
 
     <Button
@@ -90,7 +92,6 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:text="New user? Sign Up"
-        android:textSize="20sp"
-        />
+        android:textSize="20sp" />
 
 </LinearLayout>
