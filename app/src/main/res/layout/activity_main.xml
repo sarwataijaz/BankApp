@@ -12,7 +12,8 @@
     <ImageView
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:src="@drawable/bank" />
+        android:src="@drawable/bank"
+        android:transitionName="logo_image"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -20,6 +21,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/abril_fatface"
         android:text="Hello there! Welcome Back"
+        android:transitionName="logo_text"
         android:textAllCaps="true"
         android:textColor="#050505"
         android:textSize="40sp" />
@@ -72,26 +74,29 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Forgot Password?"
+            android:text="Forgot Password"
             android:textAlignment="textEnd"
-            android:textColor="#DCAB1B"
+            android:textColor="@color/mustard"
             android:textSize="20sp"
-            android:background="?attr/colorPrimaryFixed"/>
+            android:background="@color/mainPurple"/>
 
     </LinearLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
+        android:background="@color/black"
         android:text="Login"
+        android:textColor="@color/white"
         android:textSize="24sp"/>
 
     <Button
+        android:id="@+id/signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="New user? Sign Up"
-        android:textSize="20sp" />
+        android:background="@color/mainPurple"
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
 
 </LinearLayout>

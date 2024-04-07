@@ -1,10 +1,12 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BankApp" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.BankApp" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-        <item name="colorPrimary">@color/mainPurple</item>
-        <item name="colorPrimaryFixed">@color/black</item> <!--for a specific purpose-->
+        <!--for a specific purpose-->
+        <item name="android:windowContentTransitions">true</item>
     </style>
+
     <style name="Theme.BankApp" parent="Base.Theme.BankApp" />
+
 </resources>
