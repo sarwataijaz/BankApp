@@ -2,6 +2,8 @@ package com.example.bankapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -24,8 +26,8 @@ class SplashActivity : AppCompatActivity() {
         val bottomAnim = AnimationUtils.loadAnimation(this,R.anim.bottom_anim)
         val logo: ImageView = findViewById(R.id.logo)
         val welcome: TextView = findViewById(R.id.welcome)
-        logo.startAnimation(topAnim)
-        welcome.startAnimation(bottomAnim)
+        logo.startAnimation(bottomAnim)
+        welcome.startAnimation(topAnim)
 
         handler.postDelayed({
             // Code to be executed after the delay

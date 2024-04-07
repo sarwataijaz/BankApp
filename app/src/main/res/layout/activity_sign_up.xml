@@ -7,11 +7,12 @@
     tools:context=".SignUp"
     android:background="@color/mainPurple"
     android:paddingLeft="20dp"
+    android:paddingRight="20dp"
     android:orientation="vertical">
 
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:src="@drawable/bank"/>
 
     <TextView
@@ -21,11 +22,11 @@
         android:fontFamily="sans-serif"
         android:text="Enter details below to register"
         android:textColor="@color/black"
-        android:textSize="28sp" />
+        android:textSize="16sp" />
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Debit Card Number"
         android:textColorHint="@color/white"/>
@@ -34,12 +35,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter 16 digits Debit Card Number"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/mustard"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="ATM PIN"
         android:textColorHint="@color/white"/>
@@ -48,12 +49,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter 4 digits ATM PIN"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/mustard"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="CNIC"
         android:textColorHint="@color/white"/>
@@ -62,12 +63,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter CNIC"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/mustard"/>
 
     <EditText
         android:layout_width="match_parent"
-        android:layout_height="75dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Account Number"
         android:textColorHint="@color/white"/>
@@ -75,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter 16 digits Account No"
-        android:textSize="20sp"
+        android:textSize="16sp"
         android:textColor="@color/mustard"/>
 
     <Button
