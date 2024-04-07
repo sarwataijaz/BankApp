@@ -9,6 +9,11 @@
     android:paddingLeft="20dp"
     android:orientation="vertical">
 
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:src="@drawable/bank"/>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,8 +21,7 @@
         android:fontFamily="sans-serif"
         android:text="Enter details below to register"
         android:textColor="@color/black"
-        android:textSize="28sp"
-        android:textStyle="bold" />
+        android:textSize="28sp" />
 
     <EditText
         android:layout_width="match_parent"
