@@ -28,13 +28,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:hint="Debit Card Number"
+        android:hint="Name"
         android:textColorHint="@color/white"/>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter 16 digits Debit Card Number"
+        android:text="Enter your name"
         android:textSize="16sp"
         android:textColor="@color/mustard"/>
 
@@ -76,6 +76,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter 16 digits Account No"
+        android:textSize="16sp"
+        android:textColor="@color/mustard"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:hint="Password"
+        android:textColorHint="@color/white"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter a strong password"
         android:textSize="16sp"
         android:textColor="@color/mustard"/>
 

@@ -42,6 +42,7 @@
         android:orientation="vertical">
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/username"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
@@ -50,12 +51,14 @@
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:textColor="@color/white"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
@@ -67,7 +70,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
-                android:textSize="16sp" />
+                android:textSize="16sp"
+                android:textColor="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -83,6 +87,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/black"
