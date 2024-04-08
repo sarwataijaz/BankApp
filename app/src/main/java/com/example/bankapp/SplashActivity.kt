@@ -2,8 +2,6 @@ package com.example.bankapp
 
 import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -31,7 +29,7 @@ class SplashActivity : AppCompatActivity() {
 
         handler.postDelayed({
             // Code to be executed after the delay
-           Intent(this,MainActivity::class.java).also {
+           Intent(this,LoginActivity::class.java).also {
                val pairs = arrayOf(
                    androidx.core.util.Pair<View, String>(logo, "logo_image"),
                    androidx.core.util.Pair<View, String>(welcome, "logo_text")
