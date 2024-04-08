@@ -25,11 +25,13 @@
         android:textSize="16sp" />
 
     <EditText
+        android:id="@+id/nameField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Name"
-        android:textColorHint="@color/white"/>
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -39,11 +41,13 @@
         android:textColor="@color/mustard"/>
 
     <EditText
+        android:id="@+id/pinField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="ATM PIN"
-        android:textColorHint="@color/white"/>
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -53,11 +57,13 @@
         android:textColor="@color/mustard"/>
 
     <EditText
+        android:id="@+id/cnicField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="CNIC"
-        android:textColorHint="@color/white"/>
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -67,24 +73,29 @@
         android:textColor="@color/mustard"/>
 
     <EditText
+        android:id="@+id/accNo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Account Number"
-        android:textColorHint="@color/white"/>
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter 16 digits Account No"
         android:textSize="16sp"
-        android:textColor="@color/mustard"/>
+        android:textColor="@color/mustard" />
 
     <EditText
+        android:id="@+id/passField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:hint="Password"
-        android:textColorHint="@color/white"/>
+        android:inputType="textPassword"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"/>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -93,6 +104,7 @@
         android:textColor="@color/mustard"/>
 
     <Button
+        android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"

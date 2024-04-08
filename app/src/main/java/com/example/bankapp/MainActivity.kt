@@ -30,9 +30,10 @@ class MainActivity : AppCompatActivity() {
         password = findViewById(R.id.password)
 
         login.setOnClickListener {
+            val enteredUsername = username.editText?.text.toString()
             val enteredPassword = password.editText?.text.toString()
             val db = DB_Schema(this)
-            val isValid = db.loginValidity(enteredPassword)
+            val isValid = db.loginValidity(enteredUsername,enteredPassword)
 
             if(isValid) {
                 Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()

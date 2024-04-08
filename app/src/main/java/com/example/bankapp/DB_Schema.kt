@@ -74,12 +74,12 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         return (newRowID > -1)
     }
 
-    fun loginValidity(pass: String) : Boolean {
+    fun loginValidity(username: String, pass: String) : Boolean {
 
         val db = this.readableDatabase
 
-        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $PASSWORD = ?"
-        val selectionArgs = arrayOf(pass)
+        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $CUSTOMER_NAME = ? AND $PASSWORD = ?"
+        val selectionArgs = arrayOf(username,pass)
 
         val cursor = db.rawQuery(query,selectionArgs)
 
