@@ -20,8 +20,7 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/user" />
-
+                android:src="@drawable/profilee" />
 
             <TextView
                 android:id="@+id/name"
@@ -30,11 +29,11 @@
                 android:layout_marginLeft="10dp"
                 android:layout_toEndOf="@id/profile"
                 android:layout_centerVertical="true"
-                android:fontFamily="@font/brunch"
                 android:text="Sarwat Aijaz"
                 android:textAllCaps="true"
-                android:textSize="40sp"
-                android:textStyle="bold|italic" />
+                android:textSize="24sp"
+                android:textColor="@color/lightgrey"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -43,6 +42,7 @@
                 android:layout_below="@id/name"
                 android:layout_toEndOf="@id/profile"
                 android:textSize="20sp"
+                android:textColor="@color/mustard"
                 android:layout_marginLeft="10dp"
                 android:textStyle="bold|italic"/>
 
@@ -76,8 +76,15 @@
                     android:text="balance"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:textSize="16sp" />
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_above="@+id/accountHead"
+                    android:layout_alignTop="@id/balanceAmount"
+                    android:layout_marginLeft="40dp"
+                    android:src="@drawable/dot" />
 
                 <TextView
                     android:id="@+id/balanceAmount"
@@ -87,7 +94,8 @@
                     android:layout_centerHorizontal="true"
                     android:text="Rs. 4,753"
                     android:textColor="@color/mainPurple"
-                    android:textSize="30sp" />
+                    android:textStyle="bold"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/accountHead"
@@ -98,8 +106,7 @@
                     android:text="Account No"
                     android:textAllCaps="true"
                     android:textColor="@color/black"
-                    android:textSize="20sp"
-                    android:textStyle="bold|italic" />
+                    android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/accountNo"
@@ -108,15 +115,134 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/accountHead"
                     android:layout_centerInParent="true"
-                    android:text="1782637378"
+                    android:text="17826373781231"
                     android:textColor="@color/mainPurple"
-                    android:textSize="25sp" />
+                    android:textStyle="bold"
+                    android:textSize="24sp" />
 
             </RelativeLayout>
 
         </androidx.cardview.widget.CardView>
 
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:text="Activity"
+        android:textColor="@color/white"
+        android:textStyle="bold|italic"
+        android:textSize="24sp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:cardBackgroundColor="@color/lightgrey"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:id="@+id/pay_img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/pay_img"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Send Money"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/pay_img"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:cardBackgroundColor="@color/lightgrey"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:id="@+id/card_img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/card_img"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Debit Card"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/card_img"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:cardBackgroundColor="@color/lightgrey"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            app:cardElevation="10dp"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="5dp">
+
+                <ImageView
+                    android:id="@+id/setting_img"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:src="@drawable/setting_img"
+                    android:layout_centerHorizontal="true"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Settings"
+                    android:textColor="@color/white"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/setting_img"
+                    android:textSize="16sp"
+                    android:textStyle="bold"/>
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
 
     </LinearLayout>
 
 </LinearLayout>
+
+

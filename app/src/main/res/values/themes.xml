@@ -4,7 +4,7 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <!--for a specific purpose-->
-        <item name="android:windowContentTransitions">true</item>
+
     </style>
 
     <style name="Theme.BankApp" parent="Base.Theme.BankApp" />
