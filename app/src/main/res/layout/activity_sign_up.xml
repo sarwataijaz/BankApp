@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignUpActivity"
-    android:background="@color/mainPurple"
-    android:paddingLeft="20dp"
-    android:paddingRight="20dp"
-    android:orientation="vertical">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:scrollbars="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
 
     <ImageView
         android:paddingTop="20dp"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:src="@drawable/bank"/>
+        android:src="@drawable/text"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -25,83 +31,163 @@
         android:textColor="@color/black"
         android:textSize="16sp" />
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/nameField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        style="@style/Widget.Design.TextInputLayout"
         android:hint="Name"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:drawableRight="@drawable/img_3"
+            android:textSize="16sp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter your name"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:textColor="@color/mustard"/>
 
-    <EditText
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/userNameField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/Widget.Design.TextInputLayout"
+        android:hint="Login Name"
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:drawableRight="@drawable/img_3"
+            android:textSize="16sp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter your login name e.g(some_one)"
+        android:textSize="10sp"
+        android:textColor="@color/mustard"/>
+
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/pinField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        style="@style/Widget.Design.TextInputLayout"
         android:hint="ATM PIN"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:drawableRight="@drawable/img_3"
+            android:textSize="16sp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter 4 digits ATM PIN"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:textColor="@color/mustard"/>
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/cnicField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        style="@style/Widget.Design.TextInputLayout"
         android:hint="CNIC"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:drawableRight="@drawable/img_3"
+            android:textSize="16sp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter CNIC"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:textColor="@color/mustard"/>
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/accNo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        style="@style/Widget.Design.TextInputLayout"
         android:hint="Account Number"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:drawableRight="@drawable/img_3"
+            android:textSize="16sp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter 16 digits Account No"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:textColor="@color/mustard" />
 
-    <EditText
+
+    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/passField"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        style="@style/Widget.Design.TextInputLayout"
         android:hint="Password"
-        android:inputType="textPassword"
-        android:textColorHint="@color/white"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="20dp">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColorHint="@color/black"
+            android:textColor="@color/black"
+            android:drawableRight="@drawable/img_3"
+            android:textSize="16sp"/>
+
+
+    </com.google.android.material.textfield.TextInputLayout>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter a strong password"
-        android:textSize="16sp"
+        android:textSize="10sp"
         android:textColor="@color/mustard"/>
 
     <Button
@@ -109,8 +195,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
+        android:textSize="10sp"
         android:layout_marginTop="20dp"
         android:textColor="@color/white"
-        android:background="@color/mustard"
+        android:background="#EE0000"
         android:layout_gravity="center"/>
-</LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

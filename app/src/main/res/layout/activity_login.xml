@@ -21,10 +21,11 @@
         android:fontFamily="@font/acme"
         android:text="Hello there!
                      Welcome Back"
+        android:transitionName="logo"
         android:textAllCaps="true"
         android:textColor="#EE0000"
-        android:textSize="36sp"
-        android:textStyle="bold"/>
+        android:textSize="34sp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="match_parent"
@@ -32,7 +33,7 @@
         android:layout_marginTop="10dp"
         android:text="Sign in to continue"
         android:textColor="#282460"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -52,7 +53,8 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textColor="@color/black" />
+            android:textColor="@color/black"
+            android:textSize="16sp"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -78,11 +80,11 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@color/white"
             android:text="Forgot Password"
             android:textAlignment="textEnd"
             android:textColor="@color/mustard"
-            android:textSize="18sp"
-            android:background="@color/white"/>
+            android:textSize="10sp" />
 
     </LinearLayout>
 
@@ -93,7 +95,7 @@
         android:background="#282460"
         android:text="Login"
         android:textColor="@color/white"
-        android:textSize="24sp" />
+        android:textSize="16sp" />
 
     <Button
         android:id="@+id/signup"
@@ -102,6 +104,6 @@
         android:background="@color/white"
         android:text="New user? Sign Up"
         android:textColor="#EE0000"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 
 </LinearLayout>

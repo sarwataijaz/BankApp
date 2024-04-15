@@ -5,14 +5,15 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import com.google.android.material.textfield.TextInputLayout
 
 class SignUpActivity : AppCompatActivity() {
 
-    private lateinit var nameField: EditText
-    private lateinit var pinField: EditText
-    private lateinit var cnicField: EditText
-    private lateinit var accNo: EditText
-    private lateinit var passField: EditText
+    private lateinit var nameField: TextInputLayout
+    private lateinit var pinField: TextInputLayout
+    private lateinit var cnicField: TextInputLayout
+    private lateinit var accNo: TextInputLayout
+    private lateinit var passField: TextInputLayout
     private lateinit var register: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,11 +28,11 @@ class SignUpActivity : AppCompatActivity() {
         register = findViewById(R.id.register)
 
         register.setOnClickListener {
-            val name = nameField.text.toString()
-            val pin = pinField.text.toString().toInt()
-            val cnic = cnicField.text.toString().toInt()
-            val accN = accNo.text.toString().toInt()
-            val password = passField.text.toString()
+            val name = nameField.editText?.text.toString()
+            val pin = pinField.editText?.toString()?.toInt()
+            val cnic = cnicField.editText?.toString()?.toInt()
+            val accN = accNo.editText?.toString()?.toInt()
+            val password = passField.editText?.text.toString()
 
             val db = DB_Schema(this)
             val dataStored = db.addCustomerDetails(name,password, pin,cnic,accN)

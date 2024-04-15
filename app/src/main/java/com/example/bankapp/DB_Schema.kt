@@ -21,6 +21,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         private const val ACC_NO = "acc_no"
         private const val CUSTOMER_MONEY = "money"
         private const val CUSTOMER_NAME = "customer_name"
+        private const val USER_NAME = "user_name"
         private const val PASSWORD = "password"
 
         // Beneficiary table
@@ -34,9 +35,12 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
+        onUpgrade(db, DB_VERSION, DB_VERSION)
+
         val query1 = "CREATE TABLE $TABLE_CUSTOMER ( " +
                      "$CUSTOMER_ID INTEGER PRIMARY KEY, " +
                      "$CUSTOMER_NAME TEXT, " +
+                     "$USER_NAME TEXT, " +
                      "$PASSWORD INTEGER UNIQUE, " +
                      "$ATM_PIN INTEGER UNIQUE, " +
                      "$ACC_NO INTEGER UNIQUE, " +
@@ -55,7 +59,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         db?.execSQL(query2)
     }
 
-    fun addCustomerDetails(name: String, pass: String, pin: Int, cnic: Int, accNo: Int): Boolean {
+    fun addCustomerDetails(name: String, pass: String, pin: Int?, cnic: Int?, accNo: Int?): Boolean {
 
         val db : SQLiteDatabase = this.writableDatabase
         val initialFunds = 100 // initial amount to award users
