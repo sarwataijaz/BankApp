@@ -54,7 +54,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:textColor="@color/black"
-            android:textSize="16sp"/>
+            android:textSize="16sp"
+            android:background="@color/white"/>
 
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -73,18 +74,18 @@
                 android:layout_height="match_parent"
                 android:inputType="textPassword"
                 android:textSize="16sp"
-                android:textColor="@color/black"/>
+                android:textColor="@color/black"
+                android:background="@color/white"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/white"
             android:text="Forgot Password"
             android:textAlignment="textEnd"
             android:textColor="@color/mustard"
-            android:textSize="10sp" />
+            style="@style/whiteButton"/>
 
     </LinearLayout>
 
@@ -92,8 +93,8 @@
         android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#282460"
         android:text="Login"
+        android:backgroundTint="#282460"
         android:textColor="@color/white"
         android:textSize="16sp" />
 
@@ -101,8 +102,8 @@
         android:id="@+id/signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:text="New user? Sign Up"
+        android:backgroundTint="@color/white"
+        android:text="New user? SIGN UP"
         android:textColor="#EE0000"
         android:textSize="16sp" />
 

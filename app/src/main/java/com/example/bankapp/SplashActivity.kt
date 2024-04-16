@@ -14,6 +14,7 @@ import androidx.core.app.ActivityOptionsCompat
 class SplashActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
 
@@ -33,8 +34,8 @@ class SplashActivity : AppCompatActivity() {
                        androidx.core.util.Pair<View, String>(logo, "logo"))
 
                val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, *pairs)
-                          startActivity(it, options.toBundle())
-                          finish() // remove from the activity stack
+               startActivity(it, options.toBundle())
+               finish() // remove from the activity stack
            }
         }, 3000) // Delay in milliseconds
 

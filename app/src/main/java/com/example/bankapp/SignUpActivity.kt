@@ -10,8 +10,8 @@ import com.google.android.material.textfield.TextInputLayout
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var nameField: TextInputLayout
+    private lateinit var userNameField: TextInputLayout
     private lateinit var pinField: TextInputLayout
-    private lateinit var cnicField: TextInputLayout
     private lateinit var accNo: TextInputLayout
     private lateinit var passField: TextInputLayout
     private lateinit var register: Button
@@ -20,8 +20,8 @@ class SignUpActivity : AppCompatActivity() {
         setContentView(R.layout.activity_sign_up)
 
         nameField = findViewById(R.id.nameField)
+        userNameField = findViewById(R.id.userNameField)
         pinField = findViewById(R.id.pinField)
-        cnicField = findViewById(R.id.cnicField)
         accNo = findViewById(R.id.accNo)
         passField = findViewById(R.id.passField)
 
@@ -29,13 +29,13 @@ class SignUpActivity : AppCompatActivity() {
 
         register.setOnClickListener {
             val name = nameField.editText?.text.toString()
-            val pin = pinField.editText?.toString()?.toInt()
-            val cnic = cnicField.editText?.toString()?.toInt()
-            val accN = accNo.editText?.toString()?.toInt()
+            val username = userNameField.editText?.text.toString()
+            val pin = pinField.editText?.text.toString().toInt()
+            val accN = accNo.editText?.text.toString().toInt()
             val password = passField.editText?.text.toString()
 
             val db = DB_Schema(this)
-            val dataStored = db.addCustomerDetails(name,password, pin,cnic,accN)
+            val dataStored = db.addCustomerDetails(name,username,password,pin,accN)
 
             if(dataStored) {
                 Toast.makeText(this, "successful!", Toast.LENGTH_SHORT).show()

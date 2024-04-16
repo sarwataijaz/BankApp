@@ -1,12 +1,22 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.BankApp" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.BankApp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
         <!--for a specific purpose-->
+        <item name="android:windowContentTransitions">true</item>
 
     </style>
 
+
     <style name="Theme.BankApp" parent="Base.Theme.BankApp" />
+
+    <style name="whiteButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:backgroundTint">@color/white</item>
+    </style>
+
+    <style name="blueButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:backgroundTint">#282460</item>
+    </style>
 
 </resources>

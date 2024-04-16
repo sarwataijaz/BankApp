@@ -1,10 +1,12 @@
 package com.example.bankapp
 
 import android.content.ContentValues
+import android.content.ContentValues.TAG
 import android.content.Context
 import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
 
 class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
@@ -17,7 +19,6 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         private const val TABLE_CUSTOMER = "customer"
         private const val CUSTOMER_ID = "customer_id"
         private const val ATM_PIN = "atm_pin"
-        private const val CNIC = "cnic"
         private const val ACC_NO = "acc_no"
         private const val CUSTOMER_MONEY = "money"
         private const val CUSTOMER_NAME = "customer_name"
@@ -35,7 +36,6 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
-        onUpgrade(db, DB_VERSION, DB_VERSION)
 
         val query1 = "CREATE TABLE $TABLE_CUSTOMER ( " +
                      "$CUSTOMER_ID INTEGER PRIMARY KEY, " +
@@ -44,8 +44,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
                      "$PASSWORD INTEGER UNIQUE, " +
                      "$ATM_PIN INTEGER UNIQUE, " +
                      "$ACC_NO INTEGER UNIQUE, " +
-                     "$CUSTOMER_MONEY INTEGER, " +
-                     "$CNIC INTEGER UNIQUE )"
+                     "$CUSTOMER_MONEY INTEGER)"
 
         val query2 = "CREATE TABLE $TABLE_BENEFICIARY ( " +
                 "$BENEFICIARY_ID INTEGER PRIMARY KEY, " +
@@ -59,18 +58,18 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         db?.execSQL(query2)
     }
 
-    fun addCustomerDetails(name: String, pass: String, pin: Int?, cnic: Int?, accNo: Int?): Boolean {
+    fun addCustomerDetails(name: String, username: String, pass: String, pin: Int?, accNo: Int?): Boolean {
 
         val db : SQLiteDatabase = this.writableDatabase
         val initialFunds = 100 // initial amount to award users
 
         val values = ContentValues()
         values.put(CUSTOMER_NAME,name)
+        values.put(USER_NAME,username)
         values.put(PASSWORD,pass)
         values.put(ATM_PIN,pin)
         values.put(ACC_NO,accNo)
         values.put(CUSTOMER_MONEY, initialFunds)
-        values.put(CNIC,cnic)
 
         val newRowID = db.insert(TABLE_CUSTOMER, null, values)
         db.close()
@@ -82,7 +81,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
 
         val db = this.readableDatabase
 
-        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $CUSTOMER_NAME = ? AND $PASSWORD = ?"
+        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
         val selectionArgs = arrayOf(username,pass)
 
         val cursor = db.rawQuery(query,selectionArgs)
