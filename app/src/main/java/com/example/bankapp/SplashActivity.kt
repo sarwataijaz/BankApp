@@ -30,11 +30,12 @@ class SplashActivity : AppCompatActivity() {
         handler.postDelayed({
             // Code to be executed after the delay
            Intent(this,LoginActivity::class.java).also {
-               val pairs = arrayOf(androidx.core.util.Pair<View, String>(app_name, "logo_text"),
-                       androidx.core.util.Pair<View, String>(logo, "logo"))
-
-               val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, *pairs)
-               startActivity(it, options.toBundle())
+//               val pairs = arrayOf(androidx.core.util.Pair<View, String>(app_name, "logo_text"),
+//                       androidx.core.util.Pair<View, String>(logo, "logo"))
+//
+//               val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, *pairs)
+//               startActivity(it, options.toBundle())
+               startActivity(it)
                finish() // remove from the activity stack
            }
         }, 3000) // Delay in milliseconds
