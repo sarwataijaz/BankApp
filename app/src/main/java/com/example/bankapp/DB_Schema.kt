@@ -1,13 +1,10 @@
 package com.example.bankapp
 
+import android.annotation.SuppressLint
 import android.content.ContentValues
-import android.content.ContentValues.TAG
 import android.content.Context
-import android.database.Cursor
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import android.util.Log
-import android.widget.Toast
 
 class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
@@ -90,6 +87,51 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         cursor.close()
 
         return isValid
+    }
+
+    @SuppressLint("Range")
+    fun getUserAccount(username: String, pass: String): Int? {
+        val db = this.readableDatabase
+
+        val query = "SELECT $ACC_NO FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
+        val selectionArgs = arrayOf(username,pass)
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        if(cursor.moveToFirst()) {
+            return cursor.getInt(cursor.getColumnIndex(ACC_NO))
+        }
+        return null
+    }
+
+    @SuppressLint("Range")
+    fun getUserName(username: String, pass: String): String? {
+        val db = this.readableDatabase
+
+        val query = "SELECT $CUSTOMER_NAME FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
+        val selectionArgs = arrayOf(username,pass)
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        if(cursor.moveToFirst()) {
+            return cursor.getString(cursor.getColumnIndex(CUSTOMER_NAME))
+        }
+        return null
+    }
+
+    @SuppressLint("Range")
+    fun getUserAmount(username: String, pass: String): Int? {
+        val db = this.readableDatabase
+
+        val query = "SELECT $CUSTOMER_MONEY FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
+        val selectionArgs = arrayOf(username,pass)
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        if(cursor.moveToFirst()) {
+            return cursor.getInt(cursor.getColumnIndex(CUSTOMER_MONEY))
+        }
+        return null
     }
 
 
