@@ -3,6 +3,5 @@
     <array name="preloaded_fonts" translatable="false">
         <item>@font/abril_fatface</item>
         <item>@font/acme</item>
-        <item>@font/alike_angular</item>
     </array>
 </resources>

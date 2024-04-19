@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="mainBlue">#282460</color>
     <color name="red">#FF0000</color>
+    <color name="mainRed">#EE0000</color>
     <color name="blue">#0000FF</color>
     <color name="lightgrey">#D3D3D3</color>
     <color name="mustard">#DCAB1B</color>

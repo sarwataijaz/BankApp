@@ -4,16 +4,17 @@
 
     <item android:title="home"
         android:id="@+id/home"
-        android:icon="@drawable/baseline_home_24"/>
+        android:icon="@drawable/baseline_home_24"
+        app:showAsAction="ifRoom|withText"/>
 
-    <item android:title="FAQs"
+    <item android:title="call"
         android:id="@+id/call"
         android:icon="@drawable/baseline_call_24"
-       />
+        app:showAsAction="ifRoom|withText"/>
 
     <item android:title="location"
         android:id="@+id/location"
         android:icon="@drawable/baseline_add_location_24"
-       />
+        app:showAsAction="ifRoom|withText"/>
 
 </menu>
