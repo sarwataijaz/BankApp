@@ -13,7 +13,7 @@
         android:padding="20dp"
         android:layout_width="match_parent"
         android:layout_height="300dp"
-        android:background="@color/mainBlue">
+        android:background="@drawable/bg">
 
         <ImageView
             android:id="@+id/logo"
@@ -144,13 +144,15 @@
                 android:gravity="bottom">
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/moneyCardView"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     app:cardBackgroundColor="@color/white"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
                     app:cardElevation="10dp"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    android:clickable="true">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -179,13 +181,15 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/debitCardView"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     app:cardBackgroundColor="@color/white"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
                     app:cardElevation="10dp"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    android:clickable="true">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
@@ -214,13 +218,15 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/settingsCardView"
                     android:layout_width="0dp"
                     android:layout_height="150dp"
                     app:cardBackgroundColor="@color/white"
                     android:layout_weight="1"
                     android:layout_margin="10dp"
                     app:cardElevation="10dp"
-                    app:cardCornerRadius="10dp">
+                    app:cardCornerRadius="10dp"
+                    android:clickable="true">
 
                     <RelativeLayout
                         android:layout_width="match_parent"

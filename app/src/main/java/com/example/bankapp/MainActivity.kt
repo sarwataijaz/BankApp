@@ -3,12 +3,16 @@ package com.example.bankapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 
 class MainActivity : AppCompatActivity() {
 
     lateinit var name: TextView
     lateinit var amount: TextView
     lateinit var accNo: TextView
+    lateinit var moneyCardView: CardView
+    lateinit var debitCardView: CardView
+    lateinit var settingsCardView: CardView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -17,6 +21,9 @@ class MainActivity : AppCompatActivity() {
         name = findViewById(R.id.name)
         amount = findViewById(R.id.amount)
         accNo = findViewById(R.id.accNo)
+        moneyCardView = findViewById(R.id.moneyCardView)
+        debitCardView = findViewById(R.id.debitCardView)
+        settingsCardView = findViewById(R.id.settingsCardView)
 
         val username = intent.getStringExtra("username") ?: "sarwat_aq"
         val password = intent.getStringExtra("password") ?: "sarwat"
@@ -32,6 +39,18 @@ class MainActivity : AppCompatActivity() {
         name.text = "Hello, $nameToDisplay"
         accNo.text = userAccount.toString()
         amount.text = userMoney.toString()
+
+        moneyCardView.setOnClickListener{
+
+        }
+
+        settingsCardView.setOnClickListener{
+
+        }
+
+        debitCardView.setOnClickListener{
+
+        }
     }
 
 }
