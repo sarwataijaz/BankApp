@@ -41,8 +41,6 @@ class LoginActivity : AppCompatActivity() {
                 val isValid = db.loginValidity(enteredUsername, enteredPassword)
 
 
-                val mainActivity = MainActivity()
-
                 if (isValid) {
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 

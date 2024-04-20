@@ -1,5 +1,6 @@
 package com.example.bankapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.TextView
@@ -41,7 +42,9 @@ class MainActivity : AppCompatActivity() {
         amount.text = userMoney.toString()
 
         moneyCardView.setOnClickListener{
-
+            Intent(this,AddAccountActivity::class.java).also {
+                startActivity(it)
+            }
         }
 
         settingsCardView.setOnClickListener{

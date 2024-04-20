@@ -22,6 +22,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         private const val USER_NAME = "user_name"
         private const val PASSWORD = "password"
 
+
         // Beneficiary table
         private const val TABLE_BENEFICIARY = "beneficiary"
         private const val BENEFICIARY_ID = "beneficiary_id"
@@ -104,12 +105,38 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         return null
     }
 
+    fun accNumExist(accNo: Int): Boolean {
+        val db = this.readableDatabase
+
+        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
+        val selectionArgs = arrayOf(accNo.toString())
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        return cursor.moveToFirst()
+    }
+
     @SuppressLint("Range")
     fun getUserName(username: String, pass: String): String? {
         val db = this.readableDatabase
 
         val query = "SELECT $CUSTOMER_NAME FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
         val selectionArgs = arrayOf(username,pass)
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        if(cursor.moveToFirst()) {
+            return cursor.getString(cursor.getColumnIndex(CUSTOMER_NAME))
+        }
+        return null
+    }
+
+    @SuppressLint("Range")
+    fun getUserName(accNo: Int): String? {
+        val db = this.readableDatabase
+
+        val query = "SELECT $CUSTOMER_NAME FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
+        val selectionArgs = arrayOf(accNo.toString())
 
         val cursor = db.rawQuery(query,selectionArgs)
 
