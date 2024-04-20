@@ -1,9 +1,174 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PaymentActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp">
+
+        <ImageView
+            android:id="@+id/arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="25dp"
+            android:src="@drawable/arrow"
+            android:layout_centerVertical="true" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toEndOf="@id/arrow"
+            android:text="Payment"
+            android:textColor="#00174E"
+            android:textSize="35dp"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="From Account"
+        android:paddingLeft="20dp"
+        android:fontFamily="@font/poppins"
+        android:textSize="20dp"
+        android:textColor="@color/mainRed"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@color/lightgrey"
+        app:cardElevation="20dp"
+        app:cardCornerRadius="10dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="20dp">
+
+            <ImageView
+                android:id="@+id/logoImg"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:src="@drawable/text" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SARWAT AIJAZ"
+                android:textAllCaps="true"
+                android:fontFamily="@font/poppins"
+                android:textSize="20dp"
+                android:layout_centerVertical="true"
+                android:paddingLeft="20dp"
+                android:textColor="@color/mainBlue"
+                android:layout_toEndOf="@id/logoImg"
+                android:textStyle="bold" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="To Account"
+        android:paddingLeft="25dp"
+        android:fontFamily="@font/poppins"
+        android:textSize="20dp"
+        android:textColor="@color/mainRed"
+        android:textStyle="bold"
+        android:layout_marginTop="35dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/lightgrey"
+            app:cardElevation="20dp"
+            app:cardCornerRadius="10dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="20dp">
+
+                <ImageView
+                    android:id="@+id/logoImg2"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/text" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SOBIA AIJAZ"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/poppins"
+                    android:textSize="20dp"
+                    android:layout_centerVertical="true"
+                    android:paddingLeft="20dp"
+                    android:textColor="@color/mainBlue"
+                    android:layout_toEndOf="@id/logoImg2"
+                    android:textStyle="bold" />
+
+            </RelativeLayout>
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Available balance Rs.2,753"
+        android:textColor="#0ABB85"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:textColor="@color/mainBlue"
+        android:inputType="number"
+        android:textSize="16sp"/>
+
+    <View
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+    android:id="@+id/next2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:backgroundTint="@color/mainBlue"
+    android:text="NEXT" />
+
+</LinearLayout>

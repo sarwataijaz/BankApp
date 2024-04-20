@@ -2,17 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <item android:title="home"
+    <item android:title="Home"
         android:id="@+id/home"
         android:icon="@drawable/baseline_home_24"
         app:showAsAction="ifRoom|withText"/>
 
-    <item android:title="call"
+    <item android:title="FAQs"
         android:id="@+id/call"
         android:icon="@drawable/baseline_call_24"
         app:showAsAction="ifRoom|withText"/>
 
-    <item android:title="location"
+    <item android:title="Location"
         android:id="@+id/location"
         android:icon="@drawable/baseline_add_location_24"
         app:showAsAction="ifRoom|withText"/>
