@@ -42,9 +42,11 @@ class MainActivity : AppCompatActivity() {
         amount.text = userMoney.toString()
 
         moneyCardView.setOnClickListener{
-            Intent(this,AddAccountActivity::class.java).also {
-                startActivity(it)
+            val intent = Intent(this, AddAccountActivity::class.java).also {
+                it.putExtra("username", userName)
             }
+            finish()
+            startActivity(intent)
         }
 
         settingsCardView.setOnClickListener{

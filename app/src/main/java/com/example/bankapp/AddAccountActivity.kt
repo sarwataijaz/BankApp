@@ -19,6 +19,7 @@ class AddAccountActivity : AppCompatActivity() {
 
         next.setOnClickListener {
             val enteredAccountNum = accountNum.text.toString().toInt() ?: 0  // Handle empty input
+            val customerUsername = intent.getStringExtra("username")
 
             try {
                 val db = DB_Schema(this)
@@ -30,7 +31,8 @@ class AddAccountActivity : AppCompatActivity() {
                     val userName = db.getUserName(enteredAccountNum)
 
                     val intent = Intent(this, PaymentActivity::class.java)
-                    intent.putExtra("username", userName)
+                    intent.putExtra("receiverUsername", userName)
+                    intent.putExtra("senderUsername", customerUsername)
                     finish()
                     startActivity(intent)
 
