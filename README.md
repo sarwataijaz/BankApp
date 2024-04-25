@@ -10,7 +10,10 @@ This is just a practice project for getting a good understanding of layouts, fra
 This project is still under development.
 
 # Screenshots
-![ss2](https://github.com/sarwataijaz/BankApp/assets/124436066/a08a22ec-502e-442b-a1e4-4bf3a8325a46)
+![screeen1](https://github.com/sarwataijaz/BankApp/assets/124436066/ca7b7d6c-ae0c-4f4e-8f0e-3834b9608525)
 
-![ss1](https://github.com/sarwataijaz/BankApp/assets/124436066/e61f22f9-42ab-443f-a400-4b8a4b34b723)
+![screeen2 (2)](https://github.com/sarwataijaz/BankApp/assets/124436066/cc62708f-0f89-487c-a44f-1329f52edc6b)
+
+
+
 
