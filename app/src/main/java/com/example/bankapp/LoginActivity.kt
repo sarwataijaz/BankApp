@@ -44,6 +44,14 @@ class LoginActivity : AppCompatActivity() {
                 if (isValid) {
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 
+                    val getAccNo = db.getUserAccount(enteredUsername,enteredPassword) ?: 0
+                    val getAmount = db.getUserAmount(enteredUsername,enteredPassword) ?: 0
+                    val getId = db.getUserID(getAccNo)
+
+                    // grant user frEe amount everytime they log in
+
+                    val updateFunds = db.updateAmount(getId,getAmount+100)
+
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("username", enteredUsername)
                     intent.putExtra("password", enteredPassword)
