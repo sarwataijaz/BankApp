@@ -44,13 +44,9 @@ class LoginActivity : AppCompatActivity() {
                 if (isValid) {
                     Toast.makeText(this, "Login successful!", Toast.LENGTH_SHORT).show()
 
-                    val userName = db.getUserName(enteredUsername, enteredPassword)?:"Sarwat"
-                    val userMoney = db.getUserAmount(enteredUsername, enteredPassword)?:239
-                    val userAccount = db.getUserAccount(enteredUsername, enteredPassword)?:2458
-
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("username", enteredUsername)
-                    intent.putExtra("passord", enteredPassword)
+                    intent.putExtra("password", enteredPassword)
                     finish()
                     startActivity(intent)
 

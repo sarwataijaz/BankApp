@@ -28,23 +28,28 @@ class SignUpActivity : AppCompatActivity() {
         register = findViewById(R.id.register)
 
         register.setOnClickListener {
-            val name = nameField.editText?.text.toString()
-            val username = userNameField.editText?.text.toString()
-            val pin = pinField.editText?.text.toString().toInt()
-            val accN = accNo.editText?.text.toString().toInt()
-            val password = passField.editText?.text.toString()
 
-            val db = DB_Schema(this)
-            val dataStored = db.addCustomerDetails(name,username,password,pin,accN)
+            try {
+                val name = nameField.editText?.text.toString()
+                val username = userNameField.editText?.text.toString()
+                val pin = pinField.editText?.text.toString().toInt()
+                val accN = accNo.editText?.text.toString().toInt()
+                val password = passField.editText?.text.toString()
 
-            if(dataStored) {
-                Toast.makeText(this, "successful!", Toast.LENGTH_SHORT).show()
-                finish()
-            } else {
-                Toast.makeText(this, "Invalid!", Toast.LENGTH_SHORT).show()
+                val db = DB_Schema(this)
+                val dataStored = db.addCustomerDetails(name, username, password, pin, accN)
+
+                if (dataStored) {
+                    Toast.makeText(this, "successful!", Toast.LENGTH_SHORT).show()
+                    finish()
+                } else {
+                    Toast.makeText(this, "Invalid!", Toast.LENGTH_SHORT).show()
+                }
+
+                db.close() // close the database connection
+            } catch (e: Exception) {
+                Toast.makeText(this, "Could not store data for some reason. Pls try again", Toast.LENGTH_SHORT).show()
             }
-
-            db.close() // close the database connection
         }
     }
 }

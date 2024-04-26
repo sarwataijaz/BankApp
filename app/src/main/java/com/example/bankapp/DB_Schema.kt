@@ -3,8 +3,10 @@ package com.example.bankapp
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
@@ -39,7 +41,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
                      "$CUSTOMER_ID INTEGER PRIMARY KEY, " +
                      "$CUSTOMER_NAME TEXT, " +
                      "$USER_NAME TEXT, " +
-                     "$PASSWORD INTEGER UNIQUE, " +
+                     "$PASSWORD TEXT UNIQUE, " +
                      "$ATM_PIN INTEGER UNIQUE, " +
                      "$ACC_NO INTEGER UNIQUE, " +
                      "$CUSTOMER_MONEY INTEGER)"
@@ -47,7 +49,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         val query2 = "CREATE TABLE $TABLE_BENEFICIARY ( " +
                 "$BENEFICIARY_ID INTEGER PRIMARY KEY, " +
                 "$BENEFICIARY_NAME TEXT, " +
-                "$BENEFICIARY_ACC_NO INTEGER UNIQUE, " +
+                "$BENEFICIARY_ACC_NO INTEGER, " +
                 "$BENEFICIARY_MONEY INTEGER, " +
                 "$CUSTOMER_ID_FOREIGN_KEY INTEGER, " +
                 "FOREIGN KEY($CUSTOMER_ID_FOREIGN_KEY) REFERENCES $TABLE_CUSTOMER ($CUSTOMER_ID) )"
@@ -75,6 +77,24 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         return (newRowID > -1)
     }
 
+    fun addBeneficiaryDetails(cusID: Int?, moneyGiven: Int, benefName: String?, benefAccNo: Int): Boolean {
+
+        val db : SQLiteDatabase = this.writableDatabase
+        val initialFunds = 100 // initial amount to award users
+
+        val values = ContentValues()
+        values.put(BENEFICIARY_NAME,benefName)
+        values.put(BENEFICIARY_ACC_NO,benefAccNo)
+        values.put(BENEFICIARY_MONEY,moneyGiven)
+        values.put(CUSTOMER_ID_FOREIGN_KEY,cusID)
+
+        val newRowID = db.insert(TABLE_BENEFICIARY, null, values)
+        db.close()
+
+        return (newRowID > -1)
+    }
+
+    @SuppressLint("Range")
     fun loginValidity(username: String, pass: String) : Boolean {
 
         val db = this.readableDatabase
@@ -85,7 +105,15 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         val cursor = db.rawQuery(query,selectionArgs)
 
         val isValid = cursor.moveToFirst()
-        cursor.close()
+//        cursor.close()
+
+        do {
+            // Retrieve data from Cursor for each row
+            val column1Data = cursor.getString(cursor.getColumnIndex("$CUSTOMER_NAME"))
+            val column2Data = cursor.getInt(cursor.getColumnIndex("$CUSTOMER_MONEY"))
+            // Process or display the retrieved data as needed
+            Log.d("CursorData", "Column1: $column1Data, Column2: $column2Data")
+        } while (cursor.moveToNext()) // Move to the next row if availabl
 
         return isValid
     }
@@ -94,7 +122,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
     fun getUserAccount(username: String, pass: String): Int? {
         val db = this.readableDatabase
 
-        val query = "SELECT $ACC_NO FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
+        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
         val selectionArgs = arrayOf(username,pass)
 
         val cursor = db.rawQuery(query,selectionArgs)
@@ -120,7 +148,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
     fun getUserName(username: String, pass: String): String? {
         val db = this.readableDatabase
 
-        val query = "SELECT $CUSTOMER_NAME FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
+        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
         val selectionArgs = arrayOf(username,pass)
 
         val cursor = db.rawQuery(query,selectionArgs)
@@ -135,7 +163,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
     fun getUserName(accNo: Int): String? {
         val db = this.readableDatabase
 
-        val query = "SELECT $CUSTOMER_NAME FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
+        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
         val selectionArgs = arrayOf(accNo.toString())
 
         val cursor = db.rawQuery(query,selectionArgs)
@@ -144,6 +172,38 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
             return cursor.getString(cursor.getColumnIndex(CUSTOMER_NAME))
         }
         return null
+    }
+
+    @SuppressLint("Range")
+    fun getUserID(accNo: Int): Int? {
+        val db = this.readableDatabase
+
+        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
+        val selectionArgs = arrayOf(accNo.toString())
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        if(cursor.moveToFirst()) {
+            return cursor.getInt(cursor.getColumnIndex(CUSTOMER_ID))
+        }
+        return null
+    }
+
+    fun updateAmount(id: Int?, newAmount: Int): Boolean {
+        val db = this.writableDatabase
+
+        val query = "UPDATE $TABLE_CUSTOMER SET $CUSTOMER_MONEY = ? WHERE $CUSTOMER_ID = ?"
+        val selectionArgs = arrayOf(newAmount.toString(), id.toString())
+
+        try {
+            db.execSQL(query, selectionArgs)
+            return true
+        } catch (e: SQLException) {
+            // Handle any exceptions, e.g., database error
+        } finally {
+            db.close() // Close the database connection
+        }
+        return false
     }
 
     @SuppressLint("Range")

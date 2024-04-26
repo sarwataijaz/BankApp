@@ -26,14 +26,14 @@ class MainActivity : AppCompatActivity() {
         debitCardView = findViewById(R.id.debitCardView)
         settingsCardView = findViewById(R.id.settingsCardView)
 
-        val username = intent.getStringExtra("username") ?: "sarwat_aq"
-        val password = intent.getStringExtra("password") ?: "sarwat"
+        val username = intent.getStringExtra("username") ?: " "
+        val password = intent.getStringExtra("password") ?: " "
 
         val db = DB_Schema(this)
 
         val userName = db.getUserName(username, password)
         val userMoney = db.getUserAmount(username, password)
-        val userAccount = db.getUserAccount(username, password)
+        val userAccount: Int? = db.getUserAccount(username, password)
 
         val nameToDisplay = userName?.first()?.uppercase() + userName?.substring(1)
 
@@ -44,6 +44,8 @@ class MainActivity : AppCompatActivity() {
         moneyCardView.setOnClickListener{
             val intent = Intent(this, AddAccountActivity::class.java).also {
                 it.putExtra("username", userName)
+                it.putExtra("accountNo", userAccount)
+                it.putExtra("amount",userMoney)
             }
             startActivity(intent)
         }
@@ -57,4 +59,12 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        val updatedAmount = intent.getIntExtra("updatedAmount", -1)
+        if (updatedAmount != -1) {
+            // Update the UI to reflect the updated amount
+            amount.text = updatedAmount.toString()
+        }
+    }
 }
