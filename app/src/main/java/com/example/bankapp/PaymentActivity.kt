@@ -1,5 +1,6 @@
 package com.example.bankapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -19,9 +20,13 @@ class PaymentActivity : AppCompatActivity() {
 
         senderName = findViewById(R.id.senderName)
         receiverName = findViewById(R.id.receiverName)
+        next2 = findViewById(R.id.next2)
 
         next2.setOnClickListener {
-
+            Intent(this,TransferActivity::class.java).also {
+                startActivity(it)
+                finish()
+            }
         }
 
         senderName.text = sender

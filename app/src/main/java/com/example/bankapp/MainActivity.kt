@@ -45,7 +45,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, AddAccountActivity::class.java).also {
                 it.putExtra("username", userName)
             }
-            finish()
             startActivity(intent)
         }
 

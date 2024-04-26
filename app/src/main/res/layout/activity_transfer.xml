@@ -7,19 +7,37 @@
     tools:context=".TransferActivity">
 
     <ImageView
-        android:id="@+id/bg"
+        android:id="@+id/tick"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:src="@drawable/successbg" />
+        android:layout_height="300dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/tick_img"
+        android:layout_marginTop="40dp"/>
 
-    <!-- Overlay Image (Tick) -->
-    <ImageView
+
+    <TextView
+        android:id="@+id/msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Money sent successfully!"
+        android:textColor="@color/mainBlue"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/poppins"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_horizontal"
+        android:layout_below="@id/tick"
+        android:layout_marginTop="40dp" />
+
+    <Button
+        android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/success"
-        android:scaleType="fitCenter"
-        android:layout_centerInParent="true" />
-
-
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/msg"
+        android:layout_centerHorizontal="true"
+        android:text="Go back to main screen"
+        android:textColor="@color/mainBlue"
+        android:backgroundTint="#E9F2FF"/>
 
 </RelativeLayout>
