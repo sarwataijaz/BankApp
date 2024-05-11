@@ -3,6 +3,7 @@ package com.example.bankapp
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.cardview.widget.CardView
 
@@ -15,10 +16,15 @@ class MainActivity : AppCompatActivity() {
     lateinit var debitCardView: CardView
     lateinit var settingsCardView: CardView
 
+    private var isDataUpdated = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        setAccountDashBoard()
+    }
+
+    fun setAccountDashBoard() {
         name = findViewById(R.id.name)
         amount = findViewById(R.id.amount)
         accNo = findViewById(R.id.accNo)
@@ -41,6 +47,8 @@ class MainActivity : AppCompatActivity() {
         accNo.text = userAccount.toString()
         amount.text = userMoney.toString()
 
+        Log.d("check","Ui executed")
+
         moneyCardView.setOnClickListener{
             val intent = Intent(this, AddAccountActivity::class.java).also {
                 it.putExtra("username", userName)
@@ -61,10 +69,6 @@ class MainActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        val updatedAmount = intent.getIntExtra("updatedAmount", -1)
-        if (updatedAmount != -1) {
-            // Update the UI to reflect the updated amount
-            amount.text = updatedAmount.toString()
-        }
+        setAccountDashBoard()
     }
 }

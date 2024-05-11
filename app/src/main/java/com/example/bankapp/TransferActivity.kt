@@ -15,7 +15,11 @@ class TransferActivity : AppCompatActivity() {
         val tick: ImageView = findViewById(R.id.tick)
         val backButton: Button = findViewById(R.id.backButton)
 
-        val updatedAmount = intent.getIntExtra("updatedAmount",0)
+        val customerID = intent.getIntExtra("customerID",0)
+
+        val db = com.example.bankapp.DB_Schema(this)
+        val userName = db.getUserLoginName(customerID)
+        val password = db.getUserPassword(customerID)
 
         Glide.with(this)
             .asGif()
@@ -24,7 +28,9 @@ class TransferActivity : AppCompatActivity() {
 
         backButton.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
-            intent.putExtra("updatedAmount", updatedAmount)
+            intent.putExtra("username", userName)
+            intent.putExtra("password", password)
+
             startActivity(intent)
             finish()
         }

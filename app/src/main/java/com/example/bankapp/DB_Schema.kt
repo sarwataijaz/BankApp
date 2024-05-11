@@ -98,6 +98,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
     fun loginValidity(username: String, pass: String) : Boolean {
 
         val db = this.readableDatabase
+       // onUpgrade(db, DB_VERSION, DB_VERSION)
 
         val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
         val selectionArgs = arrayOf(username,pass)
@@ -217,6 +218,36 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
 
         if(cursor.moveToFirst()) {
             return cursor.getInt(cursor.getColumnIndex(CUSTOMER_MONEY))
+        }
+        return null
+    }
+
+    @SuppressLint("Range")
+    fun getUserLoginName(id: Int): String? {
+        val db = this.readableDatabase
+
+        val query = "SELECT $USER_NAME FROM $TABLE_CUSTOMER WHERE $CUSTOMER_ID = ?"
+        val selectionArgs = arrayOf(id.toString())
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        if(cursor.moveToFirst()) {
+            return cursor.getString(cursor.getColumnIndex(USER_NAME))
+        }
+        return null
+    }
+
+    @SuppressLint("Range")
+    fun getUserPassword(id: Int): String? {
+        val db = this.readableDatabase
+
+        val query = "SELECT $PASSWORD FROM $TABLE_CUSTOMER WHERE $CUSTOMER_ID = ?"
+        val selectionArgs = arrayOf(id.toString())
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        if(cursor.moveToFirst()) {
+            return cursor.getString(cursor.getColumnIndex(PASSWORD))
         }
         return null
     }

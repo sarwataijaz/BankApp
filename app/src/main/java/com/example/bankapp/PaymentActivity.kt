@@ -65,9 +65,10 @@ class PaymentActivity : AppCompatActivity() {
                         val updated = db.updateAmount(id, newAmountSender)
 
                         if (success && updated) {
-                            val intent = Intent(this, TransferActivity::class.java)
-                            intent.putExtra("updatedAmount", newAmountSender)
-                            startActivity(intent)
+                            val intent = Intent(this, TransferActivity::class.java).also {
+                                it.putExtra("customerID", id)
+                                startActivity(it)
+                            }
                             finish()
                         }
                     }
