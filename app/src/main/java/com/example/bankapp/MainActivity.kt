@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 
 class MainActivity : AppCompatActivity() {
@@ -15,8 +18,10 @@ class MainActivity : AppCompatActivity() {
     lateinit var moneyCardView: CardView
     lateinit var debitCardView: CardView
     lateinit var settingsCardView: CardView
+    lateinit var logout: Button
 
-    private var isDataUpdated = false
+    lateinit var yesButton: Button
+    lateinit var noButton: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -31,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         moneyCardView = findViewById(R.id.moneyCardView)
         debitCardView = findViewById(R.id.debitCardView)
         settingsCardView = findViewById(R.id.settingsCardView)
+        logout = findViewById(R.id.logout)
 
         val username = intent.getStringExtra("username") ?: " "
         val password = intent.getStringExtra("password") ?: " "
@@ -65,6 +71,50 @@ class MainActivity : AppCompatActivity() {
         debitCardView.setOnClickListener{
 
         }
+
+        logout.setOnClickListener {
+            showConfirmationDialog()
+        }
+    }
+
+    fun showConfirmationDialog() {
+        val confirmationDialog: AlertDialog
+        val builder = AlertDialog.Builder(this)
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_confirmation, null) // Inflate the layout
+        builder.setView(dialogView)
+
+        confirmationDialog = builder.create()
+
+        // Find buttons after inflation (assuming IDs are correct in the layout)
+        val yesButton = dialogView.findViewById<Button>(R.id.yesButton)
+        val noButton = dialogView.findViewById<Button>(R.id.noButton)
+
+        yesButton.setOnClickListener {
+            confirmationDialog.dismiss()
+            startActivity(Intent(this, LoginActivity::class.java))
+        }
+
+        noButton.setOnClickListener {
+            confirmationDialog.dismiss()
+        }
+
+        confirmationDialog.show()
+    }
+
+    private lateinit var congratsDialog: AlertDialog
+
+    fun showCongratsDialog() {
+        val builder = AlertDialog.Builder(this)
+        builder.setView(LayoutInflater.from(this).inflate(R.layout.dialog_congrats, null))
+
+        congratsDialog = builder.create()
+
+        val dismiss = findViewById<Button>(R.id.dismiss)
+        dismiss.setOnClickListener {
+            congratsDialog.dismiss()
+        }
+
+        congratsDialog.show()
     }
 
     override fun onResume() {

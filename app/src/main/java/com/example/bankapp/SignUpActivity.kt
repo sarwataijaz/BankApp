@@ -15,6 +15,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var accNo: TextInputLayout
     private lateinit var passField: TextInputLayout
     private lateinit var register: Button
+    private lateinit var amountField: TextInputLayout
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -24,6 +25,7 @@ class SignUpActivity : AppCompatActivity() {
         pinField = findViewById(R.id.pinField)
         accNo = findViewById(R.id.accNo)
         passField = findViewById(R.id.passField)
+        amountField = findViewById(R.id.amountField)
 
         register = findViewById(R.id.register)
 
@@ -35,9 +37,10 @@ class SignUpActivity : AppCompatActivity() {
                 val pin = pinField.editText?.text.toString().toInt()
                 val accN = accNo.editText?.text.toString().toInt()
                 val password = passField.editText?.text.toString()
+                val amount = amountField.editText?.text.toString().toInt()
 
                 val db = DB_Schema(this)
-                val dataStored = db.addCustomerDetails(name, username, password, pin, accN)
+                val dataStored = db.addCustomerDetails(name, username, password, pin, accN, amount)
 
                 if (dataStored) {
                     Toast.makeText(this, "successful!", Toast.LENGTH_SHORT).show()

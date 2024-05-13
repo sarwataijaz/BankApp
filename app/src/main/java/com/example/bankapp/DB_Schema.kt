@@ -56,12 +56,12 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
 
         db?.execSQL(query1)
         db?.execSQL(query2)
+
     }
 
-    fun addCustomerDetails(name: String, username: String, pass: String, pin: Int?, accNo: Int?): Boolean {
+    fun addCustomerDetails(name: String, username: String, pass: String, pin: Int?, accNo: Int?, amount: Int?): Boolean {
 
         val db : SQLiteDatabase = this.writableDatabase
-        val initialFunds = 100 // initial amount to award users
 
         val values = ContentValues()
         values.put(CUSTOMER_NAME,name)
@@ -69,7 +69,7 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
         values.put(PASSWORD,pass)
         values.put(ATM_PIN,pin)
         values.put(ACC_NO,accNo)
-        values.put(CUSTOMER_MONEY, initialFunds)
+        values.put(CUSTOMER_MONEY, amount)
 
         val newRowID = db.insert(TABLE_CUSTOMER, null, values)
         db.close()

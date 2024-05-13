@@ -189,16 +189,49 @@
                 android:textSize="16sp"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
-
     </androidx.cardview.widget.CardView>
-
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Enter a strong password"
         android:textSize="10sp"
-        android:textColor="@color/mustard"/>
+        android:textColor="@color/mustard" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="4dp"
+        android:layout_marginTop="10dp">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/amountField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/ThemeOverlay.Material3.AutoCompleteTextView.OutlinedBox"
+            android:hint="Amount">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColorHint="@color/black"
+                android:textColor="@color/black"
+                android:drawableRight="@drawable/text_icon"
+                android:background="@color/white"
+                android:textSize="16sp"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter your intial amount"
+        android:textSize="10sp"
+        android:textColor="@color/mustard" />
+
 
         <!--elevation=0dp-->
     <Button

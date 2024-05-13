@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme_CustomLoadingDialog" parent="Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">#6F7C9B</item> // Set background color
+        <item name="android:windowFrame">@null</item> // Remove window frame
+        <item name="android:windowNoTitle">true</item> // Remove title bar
+    </style>
+</resources>

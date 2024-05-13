@@ -1,6 +1,7 @@
 package com.example.bankapp
 
 import android.content.Intent
+import android.database.CursorIndexOutOfBoundsException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -48,10 +49,6 @@ class LoginActivity : AppCompatActivity() {
                     val getAmount = db.getUserAmount(enteredUsername,enteredPassword) ?: 0
                     val getId = db.getUserID(getAccNo)
 
-                    // grant user frEe amount everytime they log in
-
-                    val updateFunds = db.updateAmount(getId,getAmount+100)
-
                     val intent = Intent(this, MainActivity::class.java)
                     intent.putExtra("username", enteredUsername)
                     intent.putExtra("password", enteredPassword)
@@ -68,6 +65,13 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(
                     this,
                     "An error occurred. Please try again later.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } catch (e:  CursorIndexOutOfBoundsException) {
+                Log.e("LoginActivity", "Error during login:", e)
+                Toast.makeText(
+                    this,
+                    "Please enter appropriate data in the fields and try again.",
                     Toast.LENGTH_SHORT
                 ).show()
             }

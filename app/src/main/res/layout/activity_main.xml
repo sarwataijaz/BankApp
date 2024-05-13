@@ -32,6 +32,16 @@
             android:textColor="@color/white"
             android:textSize="16sp" />
 
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Log Out"
+            android:textSize="12sp"
+            android:textColor="@color/mainRed"
+            android:layout_alignParentEnd="true"
+            android:backgroundTint="@color/lightgrey"/>
+
         <TextView
             android:id="@+id/name"
             android:layout_width="match_parent"
