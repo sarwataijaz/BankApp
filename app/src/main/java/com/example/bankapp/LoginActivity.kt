@@ -37,7 +37,7 @@ class LoginActivity : AppCompatActivity() {
             val enteredPassword = password.editText?.text.toString() ?: ""  // Handle empty input
 
             try {
-                val db = com.example.bankapp.DB_Schema(this)
+                val db = DB_Schema(this)
                 val isValid = db.loginValidity(enteredUsername, enteredPassword)
 
 

@@ -3,7 +3,6 @@
     <style name="Base.Theme.BankApp" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your dark theme here. -->
         <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
-        <item name="android:windowContentTransitions">true</item>
 
         </style>
     <style name="Theme.BankApp" parent="Base.Theme.BankApp" />

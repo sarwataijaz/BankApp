@@ -11,6 +11,7 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.core.app.ActivityOptionsCompat
 
+@Suppress("DEPRECATION")
 class SplashActivity : AppCompatActivity() {
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,14 +30,23 @@ class SplashActivity : AppCompatActivity() {
 
         handler.postDelayed({
             // Code to be executed after the delay
-           Intent(this,LoginActivity::class.java).also {
-               val pairs = arrayOf(androidx.core.util.Pair<View, String>(app_name, "logo_text"),
-                       androidx.core.util.Pair<View, String>(logo, "logo"))
+ //          Intent(this,LoginActivity::class.java).also {
+//               val pairs = arrayOf(androidx.core.util.Pair<View, String>(app_name, "logo_text"),
+//                       androidx.core.util.Pair<View, String>(logo, "logo"))
+//
+//               val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, *pairs)
+//               startActivity(it, options.toBundle())
+//               finish() // remove from the activity stack
+//               this@LoginActivity.overridePendingTransition(
+//                   R.anim.animate_card_enter,
+//                   R.anim.animate_card_exit
+//               )
+//               finish()
+               val intent = Intent(this, LoginActivity::class.java)
+               startActivity(intent)
+               overridePendingTransition(R.anim.animate_in_out_enter, R.anim.animate_in_out_exit)
+               finish()
 
-               val options = ActivityOptionsCompat.makeSceneTransitionAnimation(this, *pairs)
-               startActivity(it, options.toBundle())
-               finish() // remove from the activity stack
-           }
         }, 3000) // Delay in milliseconds
 
     }
