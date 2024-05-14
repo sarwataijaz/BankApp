@@ -17,7 +17,7 @@ class TransferActivity : AppCompatActivity() {
 
         val customerID = intent.getIntExtra("customerID",0)
 
-        val db = com.example.bankapp.DB_Schema(this)
+        val db = DB_Schema(this)
         val userName = db.getUserLoginName(customerID)
         val password = db.getUserPassword(customerID)
 

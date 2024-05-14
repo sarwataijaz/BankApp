@@ -53,7 +53,16 @@ class MainActivity : AppCompatActivity() {
         accNo.text = userAccount.toString()
         amount.text = userMoney.toString()
 
-        Log.d("check","Ui executed")
+  //      db.close()
+//        Log.d("check","Ui executed")
+        if (userAccount != null) {
+            val getUpdatedMoney = db.moneyReceived(userAccount).toString() // Ensure String conversion
+            val getSenderName = db.moneyReceivedFrom(userAccount)
+            if (getUpdatedMoney != "-1" && getSenderName != null) {
+                showCongratsDialog(getSenderName, getUpdatedMoney.toInt()) // Convert back to Int if needed
+            }
+        }
+        db.close()
 
         moneyCardView.setOnClickListener{
             val intent = Intent(this, AddAccountActivity::class.java).also {
@@ -77,7 +86,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun showConfirmationDialog() {
+    private fun showConfirmationDialog() {
         val confirmationDialog: AlertDialog
         val builder = AlertDialog.Builder(this)
         val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_confirmation, null) // Inflate the layout
@@ -92,6 +101,7 @@ class MainActivity : AppCompatActivity() {
         yesButton.setOnClickListener {
             confirmationDialog.dismiss()
             startActivity(Intent(this, LoginActivity::class.java))
+            finish()
         }
 
         noButton.setOnClickListener {
@@ -103,13 +113,19 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var congratsDialog: AlertDialog
 
-    fun showCongratsDialog() {
+    private fun showCongratsDialog(senderName: String, senderMoney: Int) {
         val builder = AlertDialog.Builder(this)
         builder.setView(LayoutInflater.from(this).inflate(R.layout.dialog_congrats, null))
 
         congratsDialog = builder.create()
 
         val dismiss = findViewById<Button>(R.id.dismiss)
+        val congosText = findViewById<TextView>(R.id.congosText)
+
+        congosText.text = "You just received Rs $senderMoney from $senderName !!"
+
+        Log.d("check","You just received Rs $senderMoney from $senderName !!"
+        )
         dismiss.setOnClickListener {
             congratsDialog.dismiss()
         }

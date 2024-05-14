@@ -16,6 +16,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var passField: TextInputLayout
     private lateinit var register: Button
     private lateinit var amountField: TextInputLayout
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
