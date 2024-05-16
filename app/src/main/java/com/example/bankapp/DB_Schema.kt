@@ -3,14 +3,26 @@ package com.example.bankapp
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
+import android.database.Cursor
 import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 import android.widget.Toast
 
-class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
+class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
     companion object {
+
+//        @Volatile
+//        private var instance: DB_Schema? = null
+//
+//        fun getInstance(context: Context): DB_Schema {
+//            return instance ?: synchronized(this) {
+//                instance ?: DB_Schema(context).also { instance = it }
+//            }
+ //       }
+
         private const val DB_NAME = "Bank_DB"
         private const val DB_VERSION = 1
 
@@ -271,6 +283,27 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
     }
 
     @SuppressLint("Range")
+    fun getUserAmount(accNo: Int): Int {
+        val db = this.readableDatabase
+
+        val query = "SELECT $CUSTOMER_MONEY FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
+        val selectionArgs = arrayOf(accNo.toString())
+
+        val cursor = db.rawQuery(query,selectionArgs)
+
+        return if (cursor.moveToFirst()) {
+            val userMoney = cursor.getInt(cursor.getColumnIndex(CUSTOMER_MONEY))
+            cursor.close() // Close cursor after use
+            db.close() // Close connection after processing data
+            userMoney
+        } else {
+            cursor.close() // Close cursor even if no results
+            db.close() // Close connection even if no results
+            0
+        }
+    }
+
+    @SuppressLint("Range")
     fun getUserLoginName(id: Int): String? {
         val db = this.readableDatabase
 
@@ -353,31 +386,58 @@ class DB_Schema(context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB
     fun moneyReceived(accNo: Int): Int {
         val db = this.readableDatabase
 
-        val recentlyUpdated = getVersion(accNo)
-
-        if(!recentlyUpdated) {
+        // Check if the database is open before proceeding
+        if (!db.isOpen) {
+            Log.e("moneyReceived", "Database is not open")
             return -1
         }
 
-        val query = "SELECT $BENEFICIARY_MONEY FROM $TABLE_BENEFICIARY WHERE $BENEFICIARY_ACC_NO = ? ORDER BY $BENEFICIARY_ID DESC \n" +
-                "LIMIT 1;" // get the latest record
+        val recentlyUpdated = getVersion(accNo)
+        if (!recentlyUpdated) {
+            return -1
+        }
 
+        Log.d("moneyReceived", "Version updated for account $accNo")
+
+        val query = """
+        SELECT $BENEFICIARY_MONEY FROM $TABLE_BENEFICIARY 
+        WHERE $BENEFICIARY_ACC_NO = ? 
+        ORDER BY $BENEFICIARY_ID DESC LIMIT 1;
+    """.trimIndent()
+
+        Log.d("moneyReceived", "Query prepared: $query")
 
         val selectionArgs = arrayOf(accNo.toString())
+        Log.d("moneyReceived", "Selection arguments: ${selectionArgs.contentToString()}")
 
-        val cursor = db.rawQuery(query,selectionArgs)
+        var cursor: Cursor? = null
+        return try {
+            if(!db.isOpen) {
+                val db2 = this.readableDatabase
+                cursor = db2.rawQuery(query, selectionArgs)
+                Log.d("moneyReceived", "Query executed successfully")
 
-        return if (cursor.moveToFirst()) {
-            val money = cursor.getInt(cursor.getColumnIndex(BENEFICIARY_MONEY))
-            cursor.close() // Close cursor after use
-            db.close() // Close connection after processing data
-            money
-        } else {
-            cursor.close() // Close cursor even if no results
-            db.close() // Close connection even if no results
+                if (cursor.moveToFirst()) {
+                    val money = cursor.getInt(cursor.getColumnIndexOrThrow(BENEFICIARY_MONEY))
+                    Log.d("moneyReceived", "Money received: $money")
+                    money
+                } else {
+                    Log.d("moneyReceived", "No records found for account $accNo")
+                    -1
+                }
+            } else {
+                -1
+            }
+        } catch (e: Exception) {
+            Log.e("moneyReceived", "Error while fetching data", e)
             -1
+        } finally {
+            cursor?.close()
+            // Do not close the database here; manage it at a higher level
         }
     }
+
+
 
     @SuppressLint("Range")
     fun moneyReceivedFrom(accNo: Int): String? {

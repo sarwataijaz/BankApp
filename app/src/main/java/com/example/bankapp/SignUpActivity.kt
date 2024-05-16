@@ -3,7 +3,6 @@ package com.example.bankapp
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import com.google.android.material.textfield.TextInputLayout
 
@@ -16,7 +15,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var passField: TextInputLayout
     private lateinit var register: Button
     private lateinit var amountField: TextInputLayout
-
+    private lateinit var db: DB_Schema
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
@@ -40,7 +39,7 @@ class SignUpActivity : AppCompatActivity() {
                 val password = passField.editText?.text.toString()
                 val amount = amountField.editText?.text.toString().toInt()
 
-                val db = DB_Schema(this)
+                db = DB_Schema(this)
                 val dataStored = db.addCustomerDetails(name, username, password, pin, accN, amount)
 
                 if (dataStored) {

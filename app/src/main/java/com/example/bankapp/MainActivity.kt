@@ -20,8 +20,7 @@ class MainActivity : AppCompatActivity() {
     lateinit var settingsCardView: CardView
     lateinit var logout: Button
 
-    lateinit var yesButton: Button
-    lateinit var noButton: Button
+    private lateinit var db: DB_Schema
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -41,7 +40,7 @@ class MainActivity : AppCompatActivity() {
         val username = intent.getStringExtra("username") ?: " "
         val password = intent.getStringExtra("password") ?: " "
 
-        val db = DB_Schema(this)
+        db = DB_Schema(this)
 
         val userName = db.getUserName(username, password)
         val userMoney = db.getUserAmount(username, password)
@@ -53,16 +52,16 @@ class MainActivity : AppCompatActivity() {
         accNo.text = userAccount.toString()
         amount.text = userMoney.toString()
 
-  //      db.close()
+
 //        Log.d("check","Ui executed")
         if (userAccount != null) {
-            val getUpdatedMoney = db.moneyReceived(userAccount).toString() // Ensure String conversion
+            val getUpdatedMoney = db.moneyReceived(userAccount) // Ensure String conversion
             val getSenderName = db.moneyReceivedFrom(userAccount)
-            if (getUpdatedMoney != "-1" && getSenderName != null) {
-                showCongratsDialog(getSenderName, getUpdatedMoney.toInt()) // Convert back to Int if needed
+            if (getSenderName != null && getUpdatedMoney != -1) {
+                showCongratsDialog(getSenderName, getUpdatedMoney) // Convert back to Int if needed
             }
         }
-        db.close()
+
 
         moneyCardView.setOnClickListener{
             val intent = Intent(this, AddAccountActivity::class.java).also {
@@ -111,23 +110,23 @@ class MainActivity : AppCompatActivity() {
         confirmationDialog.show()
     }
 
-    private lateinit var congratsDialog: AlertDialog
 
     private fun showCongratsDialog(senderName: String, senderMoney: Int) {
+        val congratsDialog: AlertDialog
         val builder = AlertDialog.Builder(this)
-        builder.setView(LayoutInflater.from(this).inflate(R.layout.dialog_congrats, null))
+        val dialogView = LayoutInflater.from(this).inflate(R.layout.dialog_congrats, null)
+        builder.setView(dialogView)
 
         congratsDialog = builder.create()
 
-        val dismiss = findViewById<Button>(R.id.dismiss)
-        val congosText = findViewById<TextView>(R.id.congosText)
+        val dismiss = dialogView.findViewById<Button>(R.id.dismiss)
+        val congosText = dialogView.findViewById<TextView>(R.id.congosText)
 
         congosText.text = "You just received Rs $senderMoney from $senderName !!"
 
-        Log.d("check","You just received Rs $senderMoney from $senderName !!"
-        )
         dismiss.setOnClickListener {
             congratsDialog.dismiss()
+            Log.d("dismiss", "dismiss called")
         }
 
         congratsDialog.show()
@@ -137,4 +136,5 @@ class MainActivity : AppCompatActivity() {
         super.onResume()
         setAccountDashBoard()
     }
+
 }

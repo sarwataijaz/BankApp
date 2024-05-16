@@ -16,6 +16,8 @@ class PaymentActivity : AppCompatActivity() {
     lateinit var next2: Button
     lateinit var enteredAmount: EditText
     lateinit var totalAmount: TextView
+
+    private lateinit var db: DB_Schema
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
@@ -40,17 +42,21 @@ class PaymentActivity : AppCompatActivity() {
 
             try {
 
-                val db = DB_Schema(this)
+                db = DB_Schema(this)
 
                 // necessary data
-                val id = db.getUserID(senderAccNo)
+                val id1 = db.getUserID(senderAccNo) // sender id
+                val id2 = db.getUserID(receiverAccNo) // receiver id
+                val receiverMoney = db.getUserAmount(receiverAccNo)
 
                 if (enteredAmount.text == null) {
                     Toast.makeText(this, "Enter the amount first", Toast.LENGTH_SHORT).show()
                 } else {
-                    val amount = enteredAmount.text.toString().toInt()
+                    val amount = enteredAmount.text.toString().toInt() ?: 0
 
                     val newAmountSender = senderMoney - amount
+
+                    val newAmountReceiver = receiverMoney + amount
 
                     if (newAmountSender < 0) {
                         Toast.makeText(
@@ -61,12 +67,13 @@ class PaymentActivity : AppCompatActivity() {
                     } else {
 
                         val success =
-                            db.addBeneficiaryDetails(id, amount, receiveName, receiverAccNo)
-                        val updated = db.updateAmount(id, newAmountSender)
+                            db.addBeneficiaryDetails(id1, amount, receiveName, receiverAccNo)
+                        val updated1 = db.updateAmount(id1, newAmountSender)
+                        val updated2 = db.updateAmount(id2, newAmountReceiver)
 
-                        if (success && updated) {
+                        if (success && updated1 && updated2) {
                             val intent = Intent(this, TransferActivity::class.java).also {
-                                it.putExtra("customerID", id)
+                                it.putExtra("customerID", id1)
                                 startActivity(it)
                             }
                             finish()
@@ -84,5 +91,6 @@ class PaymentActivity : AppCompatActivity() {
 
         }
     }
+
 
 }

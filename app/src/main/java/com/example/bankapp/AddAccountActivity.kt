@@ -10,6 +10,7 @@ import android.widget.Toast
 
 class AddAccountActivity : AppCompatActivity() {
 
+    private lateinit var db: DB_Schema
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_account)
@@ -24,7 +25,7 @@ class AddAccountActivity : AppCompatActivity() {
             val customerMoney = intent.getIntExtra("amount",0)
 
             try {
-                val db = DB_Schema(this)
+                db = DB_Schema(this)
                 val isValid = db.accNumExist(enteredAccountNum)
 
                 if (isValid) {
@@ -46,7 +47,6 @@ class AddAccountActivity : AppCompatActivity() {
                     Toast.makeText(this, "Invalid!", Toast.LENGTH_SHORT).show()
                 }
 
-                db.close() // close the database connection
             } catch (e: Exception) {
                 Log.e("AddAccountActivity", "Error during login:", e)
                 Toast.makeText(

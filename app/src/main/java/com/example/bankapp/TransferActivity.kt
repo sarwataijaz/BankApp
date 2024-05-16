@@ -8,6 +8,8 @@ import android.widget.Button
 import android.widget.ImageView
 
 class TransferActivity : AppCompatActivity() {
+
+    private lateinit var db: DB_Schema
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transfer)
@@ -17,7 +19,7 @@ class TransferActivity : AppCompatActivity() {
 
         val customerID = intent.getIntExtra("customerID",0)
 
-        val db = DB_Schema(this)
+        db = DB_Schema(this)
         val userName = db.getUserLoginName(customerID)
         val password = db.getUserPassword(customerID)
 
@@ -35,4 +37,5 @@ class TransferActivity : AppCompatActivity() {
             finish()
         }
     }
+
 }

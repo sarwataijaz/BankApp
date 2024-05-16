@@ -17,6 +17,8 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var username: TextInputLayout
     private lateinit var password: TextInputLayout
     private lateinit var login: Button
+
+    private lateinit var db: DB_Schema
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
@@ -38,7 +40,7 @@ class LoginActivity : AppCompatActivity() {
             val enteredPassword = password.editText?.text.toString() ?: ""  // Handle empty input
 
             try {
-                val db = DB_Schema(this)
+                db = DB_Schema(this)
                 val isValid = db.loginValidity(enteredUsername, enteredPassword)
 
 
@@ -67,14 +69,8 @@ class LoginActivity : AppCompatActivity() {
                     "An error occurred. Please try again later.",
                     Toast.LENGTH_SHORT
                 ).show()
-            } catch (e:  CursorIndexOutOfBoundsException) {
-                Log.e("LoginActivity", "Error during login:", e)
-                Toast.makeText(
-                    this,
-                    "Please enter appropriate data in the fields and try again.",
-                    Toast.LENGTH_SHORT
-                ).show()
             }
         }
     }
+
 }
