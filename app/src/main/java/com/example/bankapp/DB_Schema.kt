@@ -8,20 +8,10 @@ import android.database.SQLException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
-import android.widget.Toast
 
 class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, DB_VERSION) {
 
     companion object {
-
-//        @Volatile
-//        private var instance: DB_Schema? = null
-//
-//        fun getInstance(context: Context): DB_Schema {
-//            return instance ?: synchronized(this) {
-//                instance ?: DB_Schema(context).also { instance = it }
-//            }
- //       }
 
         private const val DB_NAME = "Bank_DB"
         private const val DB_VERSION = 1
@@ -91,11 +81,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
             return (newRowID > -1)
             
         } catch (e: Exception) {
-//            Toast.makeText(
-//                    this,
-//                    "Pls make sure you entered all fields correctly.",
-//                    Toast.LENGTH_SHORT
-//                ).show()
+            Log.d("addCustomerDetails", "Could not store customer details.")
         } finally {
             db.close()
         }
@@ -106,7 +92,6 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     fun addBeneficiaryDetails(cusID: Int?, moneyGiven: Int, benefName: String?, benefAccNo: Int): Boolean {
 
         val db : SQLiteDatabase = this.writableDatabase
-       // val initialFunds = 100 // initial amount to award users
 
         try {
             val values = ContentValues()
@@ -120,11 +105,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
             return (newRowID > -1)
 
         } catch (e: Exception) {
-//            Toast.makeText(
-//                this,
-//                "Pls make sure you entered all fields correctly.",
-//                Toast.LENGTH_SHORT
-//            ).show()
+          Log.d("addBeneficiaryDetails", "Could not store benef details.")
         } finally {
             db.close()
         }
@@ -136,7 +117,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     fun loginValidity(username: String, pass: String) : Boolean {
 
             val db = this.readableDatabase
-            // onUpgrade(db, DB_VERSION, DB_VERSION)
+
             val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
             val selectionArgs = arrayOf(username, pass)
 
@@ -170,15 +151,22 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
 
     @SuppressLint("Recycle")
     fun accNumExist(accNo: Int): Boolean {
-        val db = this.readableDatabase
 
-        val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
-        val selectionArgs = arrayOf(accNo.toString())
+        try {
+            val db = this.readableDatabase
 
-        val cursor = db.rawQuery(query,selectionArgs)
-        
+            val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
+            val selectionArgs = arrayOf(accNo.toString())
 
-        return cursor.moveToFirst()
+            val cursor = db.rawQuery(query, selectionArgs)
+
+            return cursor.moveToFirst()
+
+        } catch (e: SQLException) {
+            Log.d("accNumExist", "Invalid account number.")
+        }
+
+        return false
     }
 
     @SuppressLint("Range")
@@ -254,7 +242,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
             db.execSQL(query, selectionArgs)
             return true
         } catch (e: SQLException) {
-            // Handle any exceptions, e.g., database error
+            Log.d("updateAmount", "Error updating amount.")
         } finally {
             db.close() // Close the database connection
         }
@@ -372,7 +360,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
                 db2.execSQL(query, selectionArgs)
                 return true
             } catch (e: SQLException) {
-                // Handle any exceptions, e.g., database error
+                Log.d("getVersion", "Could not update version.")
             } finally {
                 db2.close() // Close the database connection
             }
@@ -384,20 +372,12 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     }
     @SuppressLint("Range")
     fun moneyReceived(accNo: Int): Int {
-        val db = this.readableDatabase
-
-        // Check if the database is open before proceeding
-        if (!db.isOpen) {
-            Log.e("moneyReceived", "Database is not open")
-            return -1
-        }
+       // val db = this.readableDatabase
 
         val recentlyUpdated = getVersion(accNo)
         if (!recentlyUpdated) {
             return -1
         }
-
-        Log.d("moneyReceived", "Version updated for account $accNo")
 
         val query = """
         SELECT $BENEFICIARY_MONEY FROM $TABLE_BENEFICIARY 
@@ -405,17 +385,14 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
         ORDER BY $BENEFICIARY_ID DESC LIMIT 1;
     """.trimIndent()
 
-        Log.d("moneyReceived", "Query prepared: $query")
-
         val selectionArgs = arrayOf(accNo.toString())
-        Log.d("moneyReceived", "Selection arguments: ${selectionArgs.contentToString()}")
 
         var cursor: Cursor? = null
+        val db = this.readableDatabase
+
         return try {
-            if(!db.isOpen) {
-                val db2 = this.readableDatabase
-                cursor = db2.rawQuery(query, selectionArgs)
-                Log.d("moneyReceived", "Query executed successfully")
+            if(db.isOpen) {
+                cursor = db.rawQuery(query, selectionArgs)
 
                 if (cursor.moveToFirst()) {
                     val money = cursor.getInt(cursor.getColumnIndexOrThrow(BENEFICIARY_MONEY))
@@ -433,11 +410,9 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
             -1
         } finally {
             cursor?.close()
-            // Do not close the database here; manage it at a higher level
+            db.close()
         }
     }
-
-
 
     @SuppressLint("Range")
     fun moneyReceivedFrom(accNo: Int): String? {
@@ -466,7 +441,6 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
 
         return null
     }
-
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
         db?.execSQL("DROP TABLE IF EXISTS $TABLE_CUSTOMER")

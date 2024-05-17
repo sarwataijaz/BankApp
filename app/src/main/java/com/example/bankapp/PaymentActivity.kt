@@ -91,6 +91,4 @@ class PaymentActivity : AppCompatActivity() {
 
         }
     }
-
-
 }

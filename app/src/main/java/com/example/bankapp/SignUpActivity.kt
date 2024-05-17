@@ -43,7 +43,7 @@ class SignUpActivity : AppCompatActivity() {
                 val dataStored = db.addCustomerDetails(name, username, password, pin, accN, amount)
 
                 if (dataStored) {
-                    Toast.makeText(this, "successful!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Registration successful!", Toast.LENGTH_SHORT).show()
                     finish()
                 } else {
                     Toast.makeText(this, "Invalid!", Toast.LENGTH_SHORT).show()
@@ -51,7 +51,7 @@ class SignUpActivity : AppCompatActivity() {
 
                 db.close() // close the database connection
             } catch (e: Exception) {
-                Toast.makeText(this, "Could not store data for some reason. Pls try again", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Could not store data. Make sure you entered correct fields and try again", Toast.LENGTH_SHORT).show()
             }
         }
     }

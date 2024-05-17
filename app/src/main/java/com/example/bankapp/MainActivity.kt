@@ -13,12 +13,12 @@ import androidx.cardview.widget.CardView
 class MainActivity : AppCompatActivity() {
 
     lateinit var name: TextView
-    lateinit var amount: TextView
-    lateinit var accNo: TextView
-    lateinit var moneyCardView: CardView
-    lateinit var debitCardView: CardView
-    lateinit var settingsCardView: CardView
-    lateinit var logout: Button
+    private lateinit var amount: TextView
+    private lateinit var accNo: TextView
+    private lateinit var moneyCardView: CardView
+    private lateinit var debitCardView: CardView
+    private lateinit var settingsCardView: CardView
+    private lateinit var logout: Button
 
     private lateinit var db: DB_Schema
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         setAccountDashBoard()
     }
 
-    fun setAccountDashBoard() {
+    private fun setAccountDashBoard() {
         name = findViewById(R.id.name)
         amount = findViewById(R.id.amount)
         accNo = findViewById(R.id.accNo)
@@ -53,12 +53,11 @@ class MainActivity : AppCompatActivity() {
         amount.text = userMoney.toString()
 
 
-//        Log.d("check","Ui executed")
         if (userAccount != null) {
-            val getUpdatedMoney = db.moneyReceived(userAccount) // Ensure String conversion
+            val getUpdatedMoney = db.moneyReceived(userAccount)
             val getSenderName = db.moneyReceivedFrom(userAccount)
             if (getSenderName != null && getUpdatedMoney != -1) {
-                showCongratsDialog(getSenderName, getUpdatedMoney) // Convert back to Int if needed
+                showCongratsDialog(getSenderName, getUpdatedMoney)
             }
         }
 

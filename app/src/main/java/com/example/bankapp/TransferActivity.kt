@@ -25,7 +25,7 @@ class TransferActivity : AppCompatActivity() {
 
         Glide.with(this)
             .asGif()
-            .load(R.drawable.tick_img) // Or use resource ID with R.drawable.my_image
+            .load(R.drawable.tick_img)
             .into(tick)
 
         backButton.setOnClickListener {
