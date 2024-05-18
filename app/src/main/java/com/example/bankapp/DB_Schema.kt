@@ -61,7 +61,6 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
         db?.execSQL(query1)
         db?.execSQL(query2)
 
-        db?.close()
     }
 
     fun addCustomerDetails(name: String, username: String, pass: String, pin: Int?, accNo: Int?, amount: Int?): Boolean {

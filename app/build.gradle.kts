@@ -2,10 +2,18 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
 }
-
 android {
     namespace = "com.example.bankapp"
     compileSdk = 34
+
+    signingConfigs {
+        create("release") {
+            keyAlias = "bankapp_alias"
+            keyPassword = "bankappks"
+            storeFile = file("E:\\BankApp\\bankapp_keystore")
+            storePassword = "bankappkp"
+        }
+    }
 
     defaultConfig {
         applicationId = "com.example.bankapp"
@@ -17,6 +25,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    // Define the signing configuration
+
     buildTypes {
         release {
             isMinifyEnabled = false
@@ -24,7 +34,11 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            getByName("release") {
+                signingConfig = signingConfigs.getByName("release")
+            }
         }
+
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

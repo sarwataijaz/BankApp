@@ -46,6 +46,7 @@
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
                 android:drawableRight="@drawable/text_icon"
+                android:singleLine="true"
                 android:background="@color/white"
                 android:textSize="16sp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -80,6 +81,7 @@
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
                 android:drawableRight="@drawable/text_icon"
+                android:singleLine="true"
                 android:background="@color/white"
                 android:textSize="16sp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -116,6 +118,8 @@
                 android:textColor="@color/black"
                 android:drawableRight="@drawable/text_icon"
                 android:background="@color/white"
+                android:singleLine="true"
+                android:inputType="number"
                 android:textSize="16sp"/>
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -149,7 +153,9 @@
                 android:layout_height="match_parent"
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
+                android:singleLine="true"
                 android:drawableRight="@drawable/text_icon"
+                android:inputType="number"
                 android:background="@color/white"
                 android:textSize="16sp"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -160,7 +166,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Enter 16 digits Account No"
+        android:text="Enter 10 digits Account No"
         android:textSize="10sp"
         android:textColor="@color/mustard" />
 
@@ -186,6 +192,7 @@
                 android:textColor="@color/black"
                 android:drawableRight="@drawable/text_icon"
                 android:background="@color/white"
+                android:singleLine="true"
                 android:textSize="16sp"
                 android:inputType="textPassword"/>
         </com.google.android.material.textfield.TextInputLayout>
@@ -217,6 +224,7 @@
                 android:layout_height="match_parent"
                 android:textColorHint="@color/black"
                 android:textColor="@color/black"
+                android:singleLine="true"
                 android:drawableRight="@drawable/text_icon"
                 android:background="@color/white"
                 android:textSize="16sp"

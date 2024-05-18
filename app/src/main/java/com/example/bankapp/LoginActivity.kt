@@ -1,7 +1,6 @@
 package com.example.bankapp
 
 import android.content.Intent
-import android.database.CursorIndexOutOfBoundsException
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -17,6 +16,7 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var username: TextInputLayout
     private lateinit var password: TextInputLayout
     private lateinit var login: Button
+    private lateinit var registered: Button
 
     private lateinit var db: DB_Schema
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -25,8 +25,15 @@ class LoginActivity : AppCompatActivity() {
 
         signup = findViewById(R.id.signup)
         login = findViewById(R.id.login)
+        registered = findViewById(R.id.registered)
 
         signup.setOnClickListener {
+            Intent(this, SignUpActivity::class.java).also {
+                startActivity(it)
+            }
+        }
+
+        registered.setOnClickListener {
             Intent(this, SignUpActivity::class.java).also {
                 startActivity(it)
             }
