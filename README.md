@@ -14,6 +14,12 @@ Some design components and inspiration is taken from the following Figma files
 
 **This project is still under development.**
 
+# Run the project Locally
+- Run the following command
+```
+git clone
+```
+
 # Screenshots
 ![screeen1](https://github.com/sarwataijaz/BankApp/assets/124436066/ca7b7d6c-ae0c-4f4e-8f0e-3834b9608525)
 
