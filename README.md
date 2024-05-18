@@ -17,8 +17,14 @@ Some design components and inspiration is taken from the following Figma files
 # Run the project Locally
 - Run the following command
 ```
-git clone
+git clone https://github.com/sarwataijaz/BankApp.git
 ```
+- Open the project in Android Studio
+- Connect a physical device through the cable connector
+- Run the application
+
+# Contribution
+While the project is functional, it has some parts that need improvements and some sections are not developed yet. Feel free to fork the repo and add your contribution to make this even better. ^^
 
 # Screenshots
 ![screeen1](https://github.com/sarwataijaz/BankApp/assets/124436066/ca7b7d6c-ae0c-4f4e-8f0e-3834b9608525)
