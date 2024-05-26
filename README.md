@@ -20,7 +20,7 @@ Some design components and inspiration is taken from the following Figma files
 git clone https://github.com/sarwataijaz/BankApp.git
 ```
 - Open the project in Android Studio
-- Connect a physical device through the cable connector
+- Connect a physical device through the USB cable
 - Run the application
 
 # Contribution
