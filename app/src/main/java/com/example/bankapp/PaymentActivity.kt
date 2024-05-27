@@ -24,8 +24,8 @@ class PaymentActivity : AppCompatActivity() {
 
         val sendName = intent.getStringExtra("senderUsername")
         val receiveName = intent.getStringExtra("receiverUsername")
-        val senderAccNo: Int = intent.getIntExtra("senderAccNo",0)
-        val receiverAccNo = intent.getIntExtra("receiverAccNo",0)
+        val senderAccNo: Long = intent.getLongExtra("senderAccNo",0)
+        val receiverAccNo = intent.getLongExtra("receiverAccNo",0)
         val senderMoney = intent.getIntExtra("senderMoney",0)
 
         senderName = findViewById(R.id.senderName)

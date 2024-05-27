@@ -37,7 +37,7 @@ class SignUpActivity : AppCompatActivity() {
                 val name = nameField.editText?.text.toString()
                 val username = userNameField.editText?.text.toString()
                 val pin = pinField.editText?.text.toString().toInt()
-                val accN = accNo.editText?.text.toString().toInt()
+                val accN = accNo.editText?.text.toString().toLong()
                 val password = passField.editText?.text.toString()
                 val amount = amountField.editText?.text.toString().toInt()
 

@@ -63,7 +63,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
 
     }
 
-    fun addCustomerDetails(name: String, username: String, pass: String, pin: Int?, accNo: Int?, amount: Int?): Boolean {
+    fun addCustomerDetails(name: String, username: String, pass: String, pin: Int?, accNo: Long?, amount: Int?): Boolean {
 
         val db : SQLiteDatabase = this.writableDatabase
         
@@ -88,7 +88,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
        return false
     }
 
-    fun addBeneficiaryDetails(cusID: Int?, moneyGiven: Int, benefName: String?, benefAccNo: Int): Boolean {
+    fun addBeneficiaryDetails(cusID: Int?, moneyGiven: Int, benefName: String?, benefAccNo: Long): Boolean {
 
         val db : SQLiteDatabase = this.writableDatabase
 
@@ -131,7 +131,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     }
 
     @SuppressLint("Range")
-    fun getUserAccount(username: String, pass: String): Int? {
+    fun getUserAccount(username: String, pass: String): Long? {
         val db = this.readableDatabase
 
         val query = "SELECT $ACC_NO FROM $TABLE_CUSTOMER WHERE $USER_NAME = ? AND $PASSWORD = ?"
@@ -141,7 +141,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
 
         if(cursor.moveToFirst()) {
             db.close()
-            return cursor.getInt(cursor.getColumnIndex(ACC_NO))
+            return cursor.getLong(cursor.getColumnIndex(ACC_NO))
         }
         db.close()
         cursor.close()
@@ -149,7 +149,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     }
 
     @SuppressLint("Recycle")
-    fun accNumExist(accNo: Int): Boolean {
+    fun accNumExist(accNo: Long): Boolean {
 
         try {
             val db = this.readableDatabase
@@ -190,7 +190,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     }
 
     @SuppressLint("Range")
-    fun getUserName(accNo: Int): String? {
+    fun getUserName(accNo: Long): String? {
         val db = this.readableDatabase
 
         val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
@@ -211,7 +211,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     }
 
     @SuppressLint("Range")
-    fun getUserID(accNo: Int): Int? {
+    fun getUserID(accNo: Long): Int? {
         val db = this.readableDatabase
 
         val query = "SELECT * FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
@@ -270,7 +270,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     }
 
     @SuppressLint("Range")
-    fun getUserAmount(accNo: Int): Int {
+    fun getUserAmount(accNo: Long): Int {
         val db = this.readableDatabase
 
         val query = "SELECT $CUSTOMER_MONEY FROM $TABLE_CUSTOMER WHERE $ACC_NO = ?"
@@ -333,7 +333,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     }
 
     @SuppressLint("Range")
-    private fun getVersion(accNo: Int): Boolean {
+    private fun getVersion(accNo: Long): Boolean {
         val db = this.readableDatabase
 
         val query = "SELECT $VERSION FROM $TABLE_BENEFICIARY WHERE $BENEFICIARY_ACC_NO = ? ORDER BY $BENEFICIARY_ID DESC \n" +
@@ -370,7 +370,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
         return false
     }
     @SuppressLint("Range")
-    fun moneyReceived(accNo: Int): Int {
+    fun moneyReceived(accNo: Long): Int {
        // val db = this.readableDatabase
 
         val recentlyUpdated = getVersion(accNo)
@@ -414,7 +414,7 @@ class DB_Schema (context : Context) : SQLiteOpenHelper(context, DB_NAME, null, D
     }
 
     @SuppressLint("Range")
-    fun moneyReceivedFrom(accNo: Int): String? {
+    fun moneyReceivedFrom(accNo: Long): String? {
         val db = this.readableDatabase
 
         val query = "SELECT $CUSTOMER_ID_FOREIGN_KEY FROM $TABLE_BENEFICIARY WHERE $BENEFICIARY_ACC_NO = ? ORDER BY $BENEFICIARY_ID DESC \n" +

@@ -22,9 +22,9 @@ class AddAccountActivity : AppCompatActivity() {
         next.setOnClickListener {
             try {
 
-            val enteredAccountNum = accountNum.text.toString().toInt() ?: 0  // Handle empty input
+            val enteredAccountNum = accountNum.text.toString().toLong() ?: 0  // Handle empty input
             val customerUsername = intent.getStringExtra("username")
-            val customerAccNo = intent.getIntExtra("accountNo",0)
+            val customerAccNo = intent.getLongExtra("accountNo",0)
             val customerMoney = intent.getIntExtra("amount",0)
 
 

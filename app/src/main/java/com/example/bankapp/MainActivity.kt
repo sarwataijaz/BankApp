@@ -44,7 +44,7 @@ class MainActivity : AppCompatActivity() {
 
         val userName = db.getUserName(username, password)
         val userMoney = db.getUserAmount(username, password)
-        val userAccount: Int? = db.getUserAccount(username, password)
+        val userAccount: Long? = db.getUserAccount(username, password)
 
         val nameToDisplay = userName?.first()?.uppercase() + userName?.substring(1)
 
